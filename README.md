@@ -19,7 +19,7 @@ As penetration testers, we often run into applications that seem secure, but we 
    `pip install -r requirements.txt`
 
 3. Run the tool:  
-   `python payloadsmith.py`
+   `python PayloadSmith/run.py`
 
 ## How to Support
 
