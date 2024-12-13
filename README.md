@@ -19,8 +19,12 @@ As penetration testers, we often run into applications that seem secure, but we 
    `pip install -r requirements.txt`
 
 3. Run the tool:  
-   `python payloadsmith.py`
+   `python PayloadSmith/run.py`
 
+## Application screenshots
+
+Here are some images of the application
+<img src="" alt="Base64 Section" />
 ## How to Support
 
 You can support me even by buying me a coffee! Your donations help keep this project alive and allow me to add more payloads and features.  
