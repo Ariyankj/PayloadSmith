@@ -30,4 +30,4 @@ You can support me even by buying me a coffee! Your donations help keep this pro
 
 ## Get in touch
 
-If you have any ideas or working methods and payload please contact me on <a href="https://t.me/payloadsmith">Telegram</a>
+If you have any ideas or working methods and payload please contact me on <a href="https://t.me/payloadsmith" target="_blank">Telegram</a>
