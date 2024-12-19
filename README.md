@@ -23,7 +23,7 @@ As penetration testers, we often run into applications that seem secure, but we 
 
 ## Application screenshots
 
-Here are some images of the application
+Here are some images of PayloadSmith
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenBase64.jpg" alt="Base64 Section" />
 ## How to Support
 
