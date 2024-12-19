@@ -1,8 +1,29 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
+import base64
+from PyQt5.QtWidgets import QMessageBox, QComboBox, QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
+    def base64_encode(self):
+        try:
+            selected_encoding = self.Base64_encodeFrom_combo.currentText()
+            text = self.Base64_encode_field.toPlainText()
+            sample_string_bytes = text.encode(selected_encoding)
+            base64_bytes = base64.b64encode(sample_string_bytes)
+            base64_string = base64_bytes.decode(self.Base64_encodeTo_combo.currentText())
+            self.Base64_result_field.setPlainText(base64_string)
+        except UnicodeEncodeError as ex:
+            QMessageBox.information(self, "Info", str(ex))
+    def base64_decode(self):
+        try:
+            selected_encoding = self.Base64_decodeFrom_combo.currentText()
+            text = self.Base64_decode_field.toPlainText()
+            sample_string_bytes = text.encode(selected_encoding)
+            base64_bytes = base64.b64decode(sample_string_bytes)
+            base64_string = base64_bytes.decode(self.Base64_encodeTo_combo.currentText())
+            self.Base64_result_field.setPlainText(base64_string)
+        except UnicodeEncodeError as ex:
+            QMessageBox.information(self, "Info", str(ex))
     def __init__(self):
         super().__init__()
         self.setWindowTitle('PayloadSmith')
@@ -107,25 +128,55 @@ class MainWindow(QMainWindow):
         return url_tab
 
     def create_base64_tab(self):
+        encodings = ["ascii", "utf-8", "utf-16", "utf-32", "latin-1", "windows-1252","big5", "gbk", "shift_jis", "euc-kr", "iso-8859-5", "iso-8859-6","iso-8859-7", "iso-8859-8", "koi8-r", "mac_roman", "hz", "utf-7","utf-8-sig", "mac_cyrillic", "windows-874", "windows-1250"]
+
         base64_tab = QWidget(self)
         base64_tab.setGeometry(0, 0, 800, 600)
         Base64_label = QLabel("Base64 Encoder/Decoder", base64_tab)
         Base64_label.move(10, 10)
-        Bas64_encode_field = QLineEdit(base64_tab)
-        Bas64_encode_field.setGeometry(10, 30, 775, 90) 
-        Bas64_encode_field.setStyleSheet("background-color: #dbdbd7;")
-        Bas64_encode_button = QPushButton("Encode Base64", base64_tab)
-        Bas64_encode_button.setGeometry(610, 115, 175, 45)  
-        Bas64_decode_field = QLineEdit(base64_tab)
-        Bas64_decode_field.setGeometry(10, 165, 775, 90)
-        Bas64_decode_field.setStyleSheet("background-color: #dbdbd7;")
-        Bas64_decode_button = QPushButton("Decode Base64", base64_tab)
-        Bas64_decode_button.setGeometry(610, 250, 175, 45) 
-        Base64_result_field = QTextEdit(base64_tab)
-        Base64_result_field.setGeometry(10, 300, 775, 90)
-        Base64_result_field.setText("Encode/Decode Results come here")
-        Base64_result_field.setReadOnly(True)
-        Base64_result_field.setStyleSheet("background-color: #dbdbd7;")
+        self.Base64_encode_field = QTextEdit(base64_tab)
+        self.Base64_encode_field.setGeometry(10, 30, 775, 90) 
+        self.Base64_encode_field.setStyleSheet("background-color: #dbdbd7;")
+        Base64_encode_button = QPushButton("Encode Base64", base64_tab)
+        Base64_encode_button.setGeometry(610, 115, 175, 45) 
+        Base64_selectFrom_label = QLabel("Encode from character set :", base64_tab)
+        Base64_selectFrom_label.move(10, 135)
+        self.Base64_encodeFrom_combo = QComboBox(base64_tab)
+        self.Base64_encodeFrom_combo.addItems(encodings)
+        self.Base64_encodeFrom_combo.setGeometry(230, 125, 160, 35)
+        self.Base64_encodeFrom_combo.setStyleSheet("background-color: #dbdbd7;")
+        Base64_selectTo_label = QLabel("to :", base64_tab)
+        Base64_selectTo_label.move(400, 135)
+        self.Base64_encodeTo_combo = QComboBox(base64_tab)
+        self.Base64_encodeTo_combo.addItems(encodings)
+        self.Base64_encodeTo_combo.setGeometry(445, 125, 160, 35)
+        self.Base64_encodeTo_combo.setStyleSheet("background-color: #dbdbd7;")
+        Base64_encode_button.clicked.connect(self.base64_encode)
+        self.Base64_decode_field = QTextEdit(base64_tab)
+        self.Base64_decode_field.setGeometry(10, 165, 775, 90)
+        self.Base64_decode_field.setStyleSheet("background-color: #dbdbd7;")
+        
+        Base64_decodeSelectFrom_label = QLabel("Decode from character set :", base64_tab)
+        Base64_decodeSelectFrom_label.move(10, 270)
+        self.Base64_decodeFrom_combo = QComboBox(base64_tab)
+        self.Base64_decodeFrom_combo.addItems(encodings)
+        self.Base64_decodeFrom_combo.setGeometry(230, 260, 160, 35)
+        self.Base64_decodeFrom_combo.setStyleSheet("background-color: #dbdbd7;")
+        Base64_decodeSelectTo_label = QLabel("to :", base64_tab)
+        Base64_decodeSelectTo_label.move(400, 270)
+        self.Base64_decodeTo_combo = QComboBox(base64_tab)
+        self.Base64_decodeTo_combo.addItems(encodings)
+        self.Base64_decodeTo_combo.setGeometry(445, 260, 160, 35)
+        self.Base64_decodeTo_combo.setStyleSheet("background-color: #dbdbd7;")
+
+        Base64_decode_button = QPushButton("Decode Base64", base64_tab)
+        Base64_decode_button.setGeometry(610, 250, 175, 45) 
+        Base64_decode_button.clicked.connect(self.base64_decode)
+        self.Base64_result_field = QTextEdit(base64_tab)
+        self.Base64_result_field.setGeometry(10, 300, 775, 90)
+        self.Base64_result_field.setText("Encode/Decode Results come here")
+        self.Base64_result_field.setReadOnly(True)
+        self.Base64_result_field.setStyleSheet("background-color: #dbdbd7;")
         return base64_tab
 
 app = QApplication(sys.argv)

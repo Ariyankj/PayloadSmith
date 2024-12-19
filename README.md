@@ -24,7 +24,7 @@ As penetration testers, we often run into applications that seem secure, but we 
 ## Application screenshots
 
 Here are some images of the application
-<img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screen1.jpg" alt="Base64 Section" />
+<img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenBase64.jpg" alt="Base64 Section" />
 ## How to Support
 
 You can support me even by buying me a coffee! Your donations help keep this project alive and allow me to add more payloads and features.  
