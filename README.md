@@ -24,9 +24,9 @@ As penetration testers, we often run into applications that seem secure, but we 
 ## Application screenshots
 
 Here are some images of PayloadSmith:
-<p style="padding-left: 2em;">Base64 Encoder/Decoder:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Base64 Encoder/Decoder:</p>
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenBase64.jpg" alt="Base64 Section" />
-<p style="padding-left: 2em;">URL Encoder/Decoder:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;URL Encoder/Decoder:</p>
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenUrl.jpg" alt="URL Section" />
 ## How to Support
 
