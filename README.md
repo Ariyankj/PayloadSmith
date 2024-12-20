@@ -22,11 +22,11 @@ As penetration testers, we often run into applications that seem secure, but we 
    `python PayloadSmith/run.py`
 
 ## Application screenshots
-<pre>
+
 Here are some images of PayloadSmith:
-	Base64 Encoder/Decoder:</pre>
+<p style="padding-left: 2em;">Base64 Encoder/Decoder:</p>
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenBase64.jpg" alt="Base64 Section" />
-<pre>	URL Encoder/Decoder:</pre>
+<p style="padding-left: 2em;">URL Encoder/Decoder:</p>
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenUrl.jpg" alt="URL Section" />
 ## How to Support
 
