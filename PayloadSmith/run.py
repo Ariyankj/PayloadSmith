@@ -1,9 +1,25 @@
 import sys
 import base64
+import urllib.parse
 from PyQt5.QtWidgets import QMessageBox, QComboBox, QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
 from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
+    def url_encode(self):
+        try:
+            selected_encoding = self.Url_encodeFrom_combo.currentText()
+            text = self.Url_encode_field.toPlainText()
+            self.Url_result_field.setPlainText(urllib.parse.quote(text.encode(selected_encoding)))
+        except UnicodeEncodeError as ex:
+            QMessageBox.information(self, "Info", str(ex))
+    def url_decode(self):
+        try:
+            selected_encoding = self.Url_decodeFrom_combo.currentText()
+            text = self.Url_decode_field.toPlainText()
+            decoded_bytes = urllib.parse.unquote_to_bytes(text)
+            self.Url_result_field.setPlainText(decoded_bytes.decode(selected_encoding))
+        except UnicodeDecodeError as ex:
+            QMessageBox.information(self, "Info", str(ex))
     def base64_encode(self):
         try:
             selected_encoding = self.Base64_encodeFrom_combo.currentText()
@@ -22,7 +38,7 @@ class MainWindow(QMainWindow):
             base64_bytes = base64.b64decode(sample_string_bytes)
             base64_string = base64_bytes.decode(self.Base64_encodeTo_combo.currentText())
             self.Base64_result_field.setPlainText(base64_string)
-        except UnicodeEncodeError as ex:
+        except UnicodeDecodeError as ex:
             QMessageBox.information(self, "Info", str(ex))
     def __init__(self):
         super().__init__()
@@ -116,15 +132,41 @@ class MainWindow(QMainWindow):
         return xss_tab
 
     def create_url_tab(self):
+        encodings = ["ascii", "utf-8", "utf-16", "utf-32", "latin-1", "windows-1252","big5", "gbk", "shift_jis", "euc-kr", "iso-8859-5", "iso-8859-6","iso-8859-7", "iso-8859-8", "koi8-r", "mac_roman", "hz", "utf-7","utf-8-sig", "mac_cyrillic", "windows-874", "windows-1250"]
         url_tab = QWidget()
-        layout = QVBoxLayout()
+        url_tab.setGeometry(0, 0, 800, 600)
+        url_label = QLabel("Url Encoder/Decoder", url_tab)
+        url_label.move(10, 10)
+        self.Url_encode_field = QTextEdit(url_tab)
+        self.Url_encode_field.setGeometry(10, 30, 775, 90) 
+        self.Url_encode_field.setStyleSheet("background-color: #dbdbd7;")
+        Url_encode_button = QPushButton("Encode Url", url_tab)
+        Url_encode_button.setGeometry(610, 115, 175, 45) 
+        Url_encode_button.clicked.connect(self.url_encode)
+        Url_selectFrom_label = QLabel("Encode from character set :", url_tab)
+        Url_selectFrom_label.move(10, 135)
+        self.Url_encodeFrom_combo = QComboBox(url_tab)
+        self.Url_encodeFrom_combo.addItems(encodings)
+        self.Url_encodeFrom_combo.setGeometry(230, 125, 160, 35)
+        self.Url_encodeFrom_combo.setStyleSheet("background-color: #dbdbd7;")
 
-        # Add content to URL tab
-        layout.addWidget(QLabel("URL Encoder/Decoder"))
-        layout.addWidget(QLineEdit())  # Input field for URL
-        layout.addWidget(QPushButton("Encode URL"))
-        layout.addWidget(QPushButton("Decode URL"))
-        url_tab.setLayout(layout)
+        self.Url_decode_field = QTextEdit(url_tab)
+        self.Url_decode_field.setGeometry(10, 165, 775, 90)
+        self.Url_decode_field.setStyleSheet("background-color: #dbdbd7;")
+        Url_decodeSelectFrom_label = QLabel("Decode from character set :", url_tab)
+        Url_decodeSelectFrom_label.move(10, 270)
+        self.Url_decodeFrom_combo = QComboBox(url_tab)
+        self.Url_decodeFrom_combo.addItems(encodings)
+        self.Url_decodeFrom_combo.setGeometry(230, 260, 160, 35)
+        self.Url_decodeFrom_combo.setStyleSheet("background-color: #dbdbd7;")
+        Url_decode_button = QPushButton("Decode Url", url_tab)
+        Url_decode_button.setGeometry(610, 250, 175, 45) 
+        Url_decode_button.clicked.connect(self.url_decode)
+        self.Url_result_field = QTextEdit(url_tab)
+        self.Url_result_field.setGeometry(10, 300, 775, 90)
+        self.Url_result_field.setText("Encode/Decode Results come here")
+        self.Url_result_field.setReadOnly(True)
+        self.Url_result_field.setStyleSheet("background-color: #dbdbd7;")
         return url_tab
 
     def create_base64_tab(self):
