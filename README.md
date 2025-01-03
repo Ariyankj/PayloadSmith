@@ -1,3 +1,4 @@
+<img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/logo/logo.png" alt="logo" />
 # PayloadSmith
 
 **PayloadSmith** is a Python-based tool designed to help penetration testers easily find bypass payloads for different web application testing scenarios.
@@ -12,14 +13,11 @@ As penetration testers, we often run into applications that seem secure, but we 
 
 ## How to Use
 
-1. Clone the repository:  
-   `git clone https://github.com/your-username/PayloadSmith.git`
-
-2. Install dependencies:  
-   `pip install -r requirements.txt`
+1. get the code:  
+   `wget -O run.py https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/PayloadSmith/run.py`
 
 3. Run the tool:  
-   `python PayloadSmith/run.py`
+   `python run.py`
 
 ## Application screenshots
 

@@ -3,6 +3,7 @@ import base64
 import urllib.parse
 from PyQt5.QtWidgets import QMessageBox, QComboBox, QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 
 class MainWindow(QMainWindow):
     def url_encode(self):
@@ -54,7 +55,7 @@ class MainWindow(QMainWindow):
         self.tab_widget.addTab(self.create_xss_tab(), "XSS")
         self.tab_widget.addTab(self.create_url_tab(), "URL")
         self.tab_widget.addTab(self.create_base64_tab(), "Base64")
-
+        self.setWindowIcon(QIcon('logo/logo.png'))
         # Apply QSS for styling
         self.setStyleSheet("""
             QMainWindow {
