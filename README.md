@@ -15,7 +15,8 @@ As penetration testers, we often run into applications that seem secure, but we 
 
 1. get the code:  
    `wget -O run.py https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/PayloadSmith/run.py`
-
+2. Run the tool:  
+   `pip install PyQt5`
 3. Run the tool:  
    `python run.py`
 
