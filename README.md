@@ -31,6 +31,8 @@ Here are some images of PayloadSmith:
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenXss.jpg" alt="URL Section" />
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Waf bypass:</p>
 <img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/screenWaf.jpg" alt="URL Section" />
+<p>&nbsp;&nbsp;&nbsp;&nbsp;CORS,Open Redirect,Host Header Injection:</p>
+<img src="https://raw.githubusercontent.com/ariyanjm/PayloadSmith/refs/heads/main/screen%20shots/ScreenCors_OR_HHI.jpg" alt="URL Section" />
 ## How to Support
 
 You can support me even by buying me a coffee! Your donations help keep this project alive and allow me to add more payloads and features.  
